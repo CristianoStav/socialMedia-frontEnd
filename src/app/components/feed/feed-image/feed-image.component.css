@@ -1,0 +1,21 @@
+img{
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+label{
+    margin-left: 2%;
+}
+
+.img-card{
+    margin-left: 0.8%;
+    margin-top: 0.8%;
+    border-radius: 100%;
+    vertical-align: middle;
+    width: 50px; 
+    height: 50px; 
+    display: inline-block; 
+    border: 1px solid #a3a3a3; 
+    overflow: hidden;
+}

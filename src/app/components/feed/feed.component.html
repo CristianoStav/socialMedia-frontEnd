@@ -1,0 +1,40 @@
+<div *ngFor="let item of (feedItens.sort().reverse())" id="cardd" class="card item-center">
+    <aa-feed-image [image]="item.thumbAuthor" [nomeUsuario]="item.author"></aa-feed-image>
+    <div class="card-body text-center">{{item.description}} </div>
+    <img *ngIf="item.photo" class="img-thumbnail" [src]="item.photo" alt="">
+    <footer class="card-footer text-muted text-center">
+        <div class='row'>
+            <div class="col-4">
+                <i #novoLike (click)="addLike(item, novoLike)" class="fa fa-lg fa-thumbs-up"
+                    [ngClass]="(item.liked === true)?'likes':''"></i>
+                {{item.likes.length}}
+            </div>
+            <div class="col-4">
+                <i (click)="openComments(content, item)" class="fa fa-lg fa-comment"></i> {{item.comments.length}}
+            </div>
+            <div class="col-4">
+                <i buttonChange [classe]="'sharess'" class="fa fa-lg fa-share"></i>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<ng-template #content>
+    <div class="modal-header">
+        <h4 class="modal-title">Comentarios</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismissAll('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="flex: none">
+        <div *ngFor="let comments of post.comments" class="box">
+            <div style="width: 50px; height: 50px; border-radius: 70%; overflow: hidden; display: inline-block">
+                <img [src]="post.thumbAuthor" width="100%" alt="">
+            </div>
+            <aa-feed-comment [author]='comments.author' [comment]='comments.comment'></aa-feed-comment>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <aa-new-comment [post]="post"></aa-new-comment>
+    </div>
+</ng-template>

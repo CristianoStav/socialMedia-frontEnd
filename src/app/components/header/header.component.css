@@ -1,0 +1,10 @@
+.header{
+ margin-top: 5px;
+ float: inline-end;
+}
+
+.fa{
+  -webkit-text-fill-color: #000000;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}

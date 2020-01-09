@@ -1,0 +1,7 @@
+<div class="new-photo border text-center">
+  <input type="file" id="input" (change)="readURL($event)" hidden>
+  <label for="input">
+    <i class="fa fa-plus fa-3x" *ngIf="!img.length"></i>
+    <img id="blah" [src]="img" width="100%">
+  </label>
+</div>

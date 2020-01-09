@@ -1,0 +1,7 @@
+<div class="col-md-6 text-left">
+  <label for="new_post">Adicionar novo Post: </label>
+  <br>
+  <aa-new-post-photo #photoPost></aa-new-post-photo>
+  <textarea #post class="form-control" cols="30" rows="10"></textarea>
+  <button class="btn btn-primary" (click)="newPost(post.value, photoPost.img)">Postar</button>
+</div>

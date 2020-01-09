@@ -1,0 +1,30 @@
+<div style="display: inline-block;" class="text-center">
+  <div (click)='viewProfilePicture(content)' class='profilePicture'>
+    <img width="100%" [src]="url" alt="">
+  </div>
+  <p class="text-center">Olá, {{name}}</p>
+</div>
+
+<ng-template #content>
+  <div class="modal-body" style="flex: none; overflow-y: hidden; max-height: 650px;">
+    <img #largeProfileImage width="100%" [src]="url" alt="">
+  </div>
+  <div class="modal-footer">
+    <div class='row text-center mb-3'>
+      <div class='col-12'>
+        <div class="col-4" style="display: inline-block;">
+          <input (change)="changeProfileImage($event, largeProfileImage)" id="imagem" type="file" hidden>
+          <label for="imagem">
+            <i class="far fa-lg fa-edit"></i>
+          </label>
+        </div>
+        <div class="col-4" style="display: inline-block;" (click)="removeProfilePicture(largeProfileImage)">
+          <i class="fas fa-lg fa-trash-alt"></i>
+        </div>
+        <div class="col-4" style="display: inline-block;">
+          <button class="btn btn-dark" (click)="saveProfilePhoto(largeProfileImage)">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

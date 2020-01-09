@@ -1,0 +1,12 @@
+<div class="comment-box">
+  <div class="new-comment-box">
+    <img
+      [src]="'https://vignette.wikia.nocookie.net/dragonball/images/c/c8/Trunks_DBZ_Ep_131_001.png/revision/latest?cb=20170919141446'"
+      width="100%" alt="">
+  </div>
+  <div style="height: 50px; padding-top: 5px;" class="text-center">
+    <input  class="form-control" style="width: 70%; display: inline; margin-right: 15px;"
+      placeholder="Escreva um comentario..." id="clear" (input)='input = $event.target.value' type="text">
+    <button (click)="newComment()" class="btn btn-primary">Click</button>
+  </div>
+</div>

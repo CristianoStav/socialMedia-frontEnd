@@ -1,0 +1,58 @@
+.card{
+    width: 40%;
+    border: 1px solid #acabab;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 10px 15px 5px #ddd;
+}
+
+i{
+    margin: 5px;
+    cursor: pointer;
+}
+
+.fa{
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #333;
+}
+
+.likes{
+    -webkit-text-fill-color: skyblue;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: blue;
+}
+
+.comments{
+    -webkit-text-fill-color: rgba(115, 255, 0, 0.42);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(51, 255, 0);
+}
+
+.sharess{
+    -webkit-text-fill-color: rgba(255, 0, 0, 0.42);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(255, 0, 0);
+}
+
+.divss{
+    background-color: red;
+}
+
+.modal-body{
+    overflow-y: scroll;
+    min-height: 360px;
+    max-height: 360px;
+}
+
+.modal-footer{
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    border-color: transparent;
+}
+
+.box{
+    margin-bottom: 20px;
+}

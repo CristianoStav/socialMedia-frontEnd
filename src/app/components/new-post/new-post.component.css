@@ -1,0 +1,29 @@
+div{
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  position: absolute;
+}
+
+textarea{
+  position: relative;
+  display: block;
+  margin: auto;
+  width: 70%;
+  height: 100px;
+  resize: none;
+}
+
+button{
+  float: right;
+  margin-top: -38px;
+  margin-bottom: 15px;
+
+}
+label{
+  margin-top: 5px;
+}

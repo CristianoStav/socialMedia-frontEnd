@@ -1,0 +1,19 @@
+.new-photo{
+  display: inline-block;
+  position: absolute;
+  height: 98px;
+  border-radius: 5px;
+  width: 12%;
+}
+
+i{
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #333;
+  margin-top: 25px;
+}
+
+i:hover{
+  cursor: pointer;
+  -webkit-text-fill-color: rgb(182, 176, 176);
+}
