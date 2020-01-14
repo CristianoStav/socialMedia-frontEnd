@@ -16,13 +16,13 @@ export default class SingInComponent {
 
   err: string;
 
-  Register(name, pass, passConfirm) {
+  Register(email, name, pass, passConfirm) {
     if (pass === passConfirm) {
       this.err = '';
-      return this.loginService.SingIn(name, pass)
+      return this.loginService.SingIn(email, name, pass)
       .subscribe(
         (data: any) => {
-          this.router.navigate([`/index/${data.name}`]);
+          this.router.navigate([`/login`]);
         },
         error => {
           if (error.status === 404) {

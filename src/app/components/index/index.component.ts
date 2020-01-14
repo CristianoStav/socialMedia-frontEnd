@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import User from 'src/app/models/user';
 
 @Component({
   selector: 'aa-index',
@@ -16,15 +17,12 @@ export default class IndexComponent implements OnInit {
   name: string;
 
   ngOnInit() {
-    this.route
-    .fragment
-    .subscribe((data: any) => {
-      if (!data) {
-        this.router.navigate(['/login']);
-      }
+    const user: any = JSON.parse(sessionStorage.getItem('user'));
 
-      // this.name = data.nome;
-      this.name = 'Cristiano';
-    });
+    if (!user) {
+      this.router.navigate(['/login']);
+    }
+
+    this.name = user.nome;
   }
 }

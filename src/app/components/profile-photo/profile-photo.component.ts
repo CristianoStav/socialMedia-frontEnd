@@ -41,12 +41,10 @@ export class ProfilePhotoComponent implements OnInit {
     name: string;
 
     ngOnInit() {
-        this.route
-            .fragment
-            .subscribe((data: any) => {
-                this.id = data._id || undefined;
-                this.url = data.perfilPhoto || environment.profileDefaultPhoto;
-            });
+        const user = JSON.parse(sessionStorage.getItem('user'));
+
+        this.id = user._id || undefined;
+        this.url = user.perfilPhoto || environment.profileDefaultPhoto;
     }
 
     viewProfilePicture(content) {

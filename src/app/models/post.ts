@@ -1,4 +1,5 @@
 export default class Post {
+  _id: string;
   author: string;
   thumbAuthor: string;
   date: Date;

@@ -8,8 +8,8 @@ import { Component, Input } from '@angular/core';
 export default class FeedCommentComponent {
 
   @Input()
-  author: string = '';
+  author: string;
 
   @Input()
-  comment: string = '';
+  comment: string;
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit, DoCheck, ViewEncapsulation } from '@angular/core';
-import { FeedService } from './feed.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import Post from '../../models/post';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FeedService } from './feed.service';
+import Post from '../../models/post';
+import User from 'src/app/models/user';
 
 @Component({
     selector: 'aa-feed',
@@ -12,19 +13,21 @@ import { ActivatedRoute } from '@angular/router';
             background-color: #292b2c;
             color: white;
             height: 500px;
-          }`
+          }
+        .like-modal .modal-content{
+            background-color: #292b2c;
+            color: white;
+            height: 431px;
+        }`
     ],
     styleUrls: ['./feed.component.css'],
     encapsulation: ViewEncapsulation.None,
-    host: {
-        '[class.modal-body]': 'true'
-    }
 })
 export class FeedComponent implements OnInit {
 
     feedItens: object[] = [];
-    post: object;
-    userId: string;
+    post: Post;
+    user: User;
     likedPosts: Array<Post>;
 
     constructor(
@@ -35,15 +38,11 @@ export class FeedComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.route
-            .fragment
-            .subscribe((data: any) => {
-                this.userId = data._id;
-            });
+        this.user = JSON.parse(sessionStorage.getItem('user')) as unknown as User;
 
         this.getFeedPosts();
 
-        this.feedService.feedSubject.subscribe(data => {
+        this.feedService.feedSubject.subscribe(() => {
             this.getFeedPosts();
         });
     }
@@ -55,17 +54,17 @@ export class FeedComponent implements OnInit {
 
         feedPosts
             .then((posts: any) => {
-                const AllPosts: any = this.changeLikeIcon(posts);
-
+                const AllPosts: Post[] = this.changeLikeIcon(posts);
+                console.log(AllPosts);
                 this.feedItens = AllPosts;
-
             });
+
     }
 
     addLike({ _id }): void {
 
         const postLiked = this.feedService
-            .addLike(this.userId, _id)
+            .addLike(this.user, _id)
             .toPromise();
 
         postLiked.then(() => {
@@ -83,9 +82,40 @@ export class FeedComponent implements OnInit {
         });
     }
 
-    changeLikeIcon(posts: Post[]) {
-        return posts.map(post => {
-            return post.likes.includes(this.userId) ? { ...post, liked: true } : post;
+    openLikesModal(template, post): void {
+        this.post = post;
+        this.modal.open(template, {
+            scrollable: false,
+            windowClass: 'like-modal',
+            centered: true
         });
+    }
+
+    changeLikeIcon(posts: Post[]) {
+        const array = [];
+
+        posts.forEach(post => {
+            if (post.likes.length) {
+                post.likes.forEach((like: any) => {
+                    if (like._id === this.user._id) {
+                        post.liked = true;
+                    }
+                });
+            }
+            array.push(post);
+        });
+
+        return array;
+    }
+
+    deletePost(post: Post) {
+        const deleted = this.feedService
+            .deletePost(post._id)
+            .toPromise();
+
+        deleted
+            .then(resp => {
+                this.getFeedPosts();
+            });
     }
 }

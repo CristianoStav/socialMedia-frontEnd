@@ -3,6 +3,7 @@ import { NewPostService } from './new-post.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FeedService } from '../feed/feed.service';
+import User from 'src/app/models/user';
 
 @Component({
   selector: 'aa-new-post',
@@ -19,22 +20,20 @@ export class NewPostComponent implements OnInit {
 
   @Input()
   name: string;
-
+  user: User;
   profilePhoto: string;
 
   ngOnInit() {
-    this.route
-      .fragment
-      .subscribe((data: any) => {
-        this.profilePhoto = data.perfilPhoto || environment.profileDefaultPhoto;
-      });
+    this.user = JSON.parse(sessionStorage.getItem('user')) as unknown as User;
+
   }
 
   async newPost(post: string, img: string) {
 
     const newPost = {
       author: this.name,
-      thumbAuthor: this.profilePhoto || environment.profileDefaultPhoto,
+      authorId: this.user._id,
+      thumbAuthor: this.user.perfilPhoto,
       date: new Date(),
       description: post,
       likes: [],

@@ -17,13 +17,18 @@ export class FeedService {
             .get<Post[]>(environment.server);
     }
 
-    addLike(userId, _id) {
+    addLike(user, _id) {
         return this.http
-            .post(`${environment.server}/addLike`, { userId, _id });
+            .post(`${environment.server}/addLike`, { user, _id });
     }
 
     addComment(postId, comments) {
         return this.http
             .post(`${environment.server}/addComment`, { postId, comments });
+    }
+
+    deletePost(postId: string) {
+        return this.http
+            .delete(`${environment.server}/${postId}`);
     }
 }

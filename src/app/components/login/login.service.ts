@@ -17,8 +17,8 @@ export class LoginService {
       .post(`${environment.server}/login`, { login, pass });
   }
 
-  SingIn(email, pass) {
+  SingIn(email, name, pass) {
     return this.http
-    .post(`${environment.server}/singIn`, { email, pass });
+    .post(`${environment.server}/singIn`, { email, name, pass });
   }
 }

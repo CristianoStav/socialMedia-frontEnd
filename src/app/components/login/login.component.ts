@@ -19,14 +19,17 @@ export default class LoginComponent {
   err: string;
 
   Logar(name, pass): void {
-    this.loginService.Login(name, pass)
+    this.loginService
+      .Login(name, pass)
       .subscribe(
         (data: any) => {
+          console.log('Login', data);
+          sessionStorage.setItem('user', JSON.stringify(data));
           this.router.navigate([`/index`], { fragment: data });
         },
         error => {
           if (error.status === 404) {
-          this.err = 'Usuário não encontrado!';
+            this.err = 'Usuário não encontrado!';
           }
         }
       );

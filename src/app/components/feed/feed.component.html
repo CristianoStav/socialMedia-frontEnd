@@ -1,4 +1,8 @@
 <div *ngFor="let item of (feedItens.sort().reverse())" id="cardd" class="card item-center">
+    <div *ngIf="item.authorId === user._id" (click)="deletePost(item)"
+        style="align-self: flex-end; position: absolute;">
+        <i class="fas fa-times"></i>
+    </div>
     <aa-feed-image [image]="item.thumbAuthor" [nomeUsuario]="item.author"></aa-feed-image>
     <div class="card-body text-center">{{item.description}} </div>
     <img *ngIf="item.photo" class="img-thumbnail" [src]="item.photo" alt="">
@@ -7,7 +11,9 @@
             <div class="col-4">
                 <i #novoLike (click)="addLike(item, novoLike)" class="fa fa-lg fa-thumbs-up"
                     [ngClass]="(item.liked === true)?'likes':''"></i>
-                {{item.likes.length}}
+                <span style="cursor: pointer;" (click)="openLikesModal(likeContent, item)">
+                    {{item.likes.length}}
+                </span>
             </div>
             <div class="col-4">
                 <i (click)="openComments(content, item)" class="fa fa-lg fa-comment"></i> {{item.comments.length}}
@@ -36,5 +42,22 @@
     </div>
     <div class="modal-footer">
         <aa-new-comment [post]="post"></aa-new-comment>
+    </div>
+</ng-template>
+
+<ng-template #likeContent>
+    <div class="modal-header">
+        <h4 class="modal-title">Curtidas</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismissAll('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="flex: none; height: 450px;">
+        <div *ngFor="let like of post.likes" class="box">
+            <div style="width: 50px; height: 50px; border-radius: 70%; overflow: hidden; display: inline-block">
+                <img [src]="like.perfilPhoto" width="100%" alt="">
+            </div>
+            <aa-feed-likes [likes]="like"></aa-feed-likes>
+        </div>
     </div>
 </ng-template>

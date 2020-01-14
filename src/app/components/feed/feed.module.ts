@@ -7,13 +7,15 @@ import { ButtonsModule } from 'src/app/shared/directives/buttons/buttons.module'
 import ModalModule from 'src/app/shared/components/modal.module';
 import FeedCommentComponent from './feed-comment/feed-comment.component';
 import NewCommentComponent from './feed-comment/new-comment/new-comment.component';
+import FeedLikesComponent from './feed-likes/feed-likes.component';
 
 @NgModule({
     declarations: [
         FeedComponent,
         FeedImageComponent,
         FeedCommentComponent,
-        NewCommentComponent
+        NewCommentComponent,
+        FeedLikesComponent
     ],
     imports: [
         CommonModule,

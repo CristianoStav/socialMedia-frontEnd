@@ -1,28 +1,39 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FeedService } from '../../feed.service';
-import Post from 'src/app/models/post';
+import { ActivatedRoute } from '@angular/router';
+import User from 'src/app/models/user';
+import UserService from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'aa-new-comment',
   templateUrl: './new-comment.component.html',
   styleUrls: ['./new-comment.component.css']
 })
-export default class NewCommentComponent {
+export default class NewCommentComponent implements OnInit {
 
   constructor(
     private feedService: FeedService,
+    private route: ActivatedRoute,
+    private userService: UserService
   ) { }
 
   @Input()
   post: any;
 
   input: string;
+  user: User;
+
+  ngOnInit(): void {
+    this.user =  JSON.parse(sessionStorage.getItem('user')) as unknown as User;
+
+  }
 
   async newComment() {
 
     if (this.input) {
+      console.log(this.user);
       const newComment = {
-        author: 'Pessoa Aleatória',
+        author: this.user.nome,
         comment: this.input
       };
 
