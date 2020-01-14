@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+:root {
+  --first-color: #8296FF;
+  --second-color: #76A6E8;
+  --third-color: #8FDBFF;
+  --fourth-color: #76E2E8;
+  --fifth-color: #82FFE3;
+}
+
+.cl-cl1 { color: var(--first-color); }
+.cl-cl2 { color: var(--second-color); }
+.cl-cl3 { color: var(--third-color); }
+.cl-cl4 { color: var(--fourth-color); }
+.cl-cl5 { color: var(--fifth-color); }
+
+.bg-cl1 { background-color: var(--first-color); }
+.bg-cl2 { background-color: var(--second-color); }
+.bg-cl3 { background-color: var(--third-color); }
+.bg-cl4 { background-color: var(--fourth-color); }
+.bg-cl5 { background-color: var(--fifth-color); }
